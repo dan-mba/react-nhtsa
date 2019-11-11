@@ -28,10 +28,10 @@ class Model extends React.Component{
   }
   
   componentDidUpdate(){
-    const year = this.props.year;
-    const make = this.props.make;
+    const {year, make} = this.props;
+    const {isLoaded} = this.state
     
-    if((this.state.isLoaded && (year === this.state.year) && (make === this.state.make)) || 
+    if((isLoaded && (year === this.state.year) && (make === this.state.make)) || 
       (year.length === 0) || (make.length === 0)) return;
     
     var self = this;
@@ -52,15 +52,8 @@ class Model extends React.Component{
   }
   
   render() {
-    var models = [];
-    if(this.state.isLoaded && (this.props.year === this.state.year) && (this.props.model === this.state.model)) {
-      models = this.state.models.map((model) =>
-        <option value={model.replace('/&/g','_')} key={model}>
-          {model}
-        </option>
-      );
-    }
-    
+    const {models, year, make, isLoaded} = this.state;
+
     return (
       <div className='selectdiv' id='model'>
         <select
@@ -68,7 +61,14 @@ class Model extends React.Component{
           onChange={this.handleChange}>
         
           <option value="">Model:</option>
-          {models}
+          {
+            (isLoaded && (this.props.year === year) && (this.props.make === make)) ? 
+              models.map((model) =>
+                <option value={model.replace('/&/g','_')} key={model}>
+                  {model}
+                </option>
+              ) : ""
+          }
         </select>
       </div>
     );

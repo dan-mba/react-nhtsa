@@ -21,13 +21,12 @@ class Campaign extends React.Component{
   }
   
   componentDidUpdate(){
-    const year = this.props.year;
-    const make = this.props.make;
-    const model = this.props.model;
+    const {year, make, model} = this.props;
+    const {isLoaded} = this.state;
     
-    if(this.state.isLoaded && (year === this.state.year) && (make === this.state.make) && (model === this.state.model)) return;
+    if(isLoaded && (year === this.state.year) && (make === this.state.make) && (model === this.state.model)) return;
     if((year.length === 0) || (make.length === 0) || (model.length === 0)) {
-      if(this.state.isLoaded) this.setState({ isLoaded: false, campaigns: [], make: "", model: "", year: ""});
+      if(isLoaded) this.setState({ isLoaded: false, campaigns: [], make: "", model: "", year: ""});
       return;
     }
     
@@ -46,29 +45,31 @@ class Campaign extends React.Component{
   }
   
   render() {
-    var campaigns = [];
+    var {campaigns} = this.state;
+    
     var d = function(date) {
+      if (!date) return "";
       var newDate = new Date(parseInt(date.substr(6)));
       return newDate.toString().split(" ").slice(0,4).join(" ");
     }
                              
     const bStyle = {fontWeight: 'bold'};
     const tStyle = {fontWeight: 'bold', textAlign: 'center'};
-    if(this.state.campaigns.length) {
-      campaigns = this.state.campaigns.map((campaign) =>
-        <div key={campaign.NHTSACampaignNumber} className='campaign'>
-          <div><span style={bStyle}>Campaign Number</span>: {campaign.NHTSACampaignNumber}</div>
-          <div><span style={bStyle}>Report Received Date</span>: {d(campaign.ReportReceivedDate)}</div>
-          <div><div style={tStyle}>Summary</div>{campaign.Summary}</div>
-          <div><div style={tStyle}>Problem</div>{campaign.Conequence}</div>
-          <div><div style={tStyle}>Remedy</div>{campaign.Remedy}</div>
-        </div>
-      );
-    }
                                            
     return (
       <div className="campaignBox">
-        {campaigns}
+        {
+          campaigns.length === 0 ? "" :
+            campaigns.map((campaign) =>
+              <div key={campaign.NHTSACampaignNumber} className='campaign'>
+                <div><span style={bStyle}>Campaign Number</span>: {campaign.NHTSACampaignNumber}</div>
+                <div><span style={bStyle}>Report Received Date</span>: {d(campaign.ReportReceivedDate)}</div>
+                <div><div style={tStyle}>Summary</div>{campaign.Summary}</div>
+                <div><div style={tStyle}>Problem</div>{campaign.Conequence}</div>
+                <div><div style={tStyle}>Remedy</div>{campaign.Remedy}</div>
+              </div>
+          )
+        }
       </div>
     );
   } 

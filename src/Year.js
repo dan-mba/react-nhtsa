@@ -42,20 +42,20 @@ class Year extends React.Component{
   }
   
   render() {
-    var modelYears = [];
-    if(this.state.isLoaded) {
-      modelYears = this.state.years.map((year) =>
-        <option value={year} key={year.toString()}>
-          {year}
-        </option>
-      );
-    }
+    const {isLoaded, years} = this.state;
     
     return (
       <div className='selectdiv' id='year'>
         <select onChange={this.handleChange}>
           <option value="">Year:</option>
-          {modelYears}
+          {
+            isLoaded ?
+              years.map((year) =>
+                <option value={year} key={year.toString()}>
+                  {year}
+                </option>
+              ) : ""
+          }
         </select>
       </div>
     );

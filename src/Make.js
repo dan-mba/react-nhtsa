@@ -27,8 +27,11 @@ class Make extends React.Component{
   }
   
   componentDidUpdate(){
-    const year = this.props.year;
-    if((this.state.isLoaded && (year === this.state.year)) || (year.length === 0)) return;
+    const {year} = this.props;
+    const {isLoaded} = this.state;
+    if((isLoaded && (year === this.state.year)) || (year.length === 0)) return;
+
+    var self = this;
     var xhr = $.ajax({ url: endpoint+'/modelyear/'+year+datatype,
                        dataType: 'jsonp'
                     });
@@ -39,20 +42,13 @@ class Make extends React.Component{
         newMakes.push(data.Results[i].Make);
       }
       
-      this.setState({ isLoaded: true, makes : newMakes, year: data.Results[0].ModelYear });
-    }.bind(this));
+      self.setState({ isLoaded: true, makes : newMakes, year: data.Results[0].ModelYear });
+    });
   }
   
   render() {
-    var makes = [];
-    if(this.state.isLoaded &&(this.props.year === this.state.year)) {
-      makes = this.state.makes.map((make) =>
-        <option value={make.replace('/&/g','_')} key={make}>
-          {make}
-        </option>
-      );
-    }
-    
+    const {makes, year, isLoaded} = this.state;
+ 
     return (
       <div className='selectdiv' id='make'>
         <select
@@ -60,7 +56,14 @@ class Make extends React.Component{
           onChange={this.handleChange}>
         
           <option value="">Make:</option>
-          {makes}
+          {
+            (isLoaded &&(this.props.year ===year)) ? 
+              makes.map((make) =>
+                <option value={make.replace('/&/g','_')} key={make}>
+                  {make}
+                </option>
+              ) : ""
+          }
         </select>
       </div>
     );

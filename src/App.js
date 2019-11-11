@@ -1,26 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Year from './Year';
+import Make from './Make';
+import Model from './Model';
+import Campaign from './Campaign';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = { year: "", make: "", model: "", parent: 0}
+    this.changeYear = this.changeYear.bind(this);
+    this.changeMake = this.changeMake.bind(this);
+    this.changeModel = this.changeModel.bind(this);
+  }
+  
+  changeYear(newYear) {
+    this.setState({ year: newYear, make: "", model: ""});
+  }
+  
+  changeMake(newMake) {
+    this.setState({make: newMake, model: ""});
+  }
+  
+  changeModel(newModel) {
+    this.setState({model: newModel});
+  }
+  
+  render() {
+    return (
+      <div>
+        <div className="selectBox">
+          <Year onChange={this.changeYear} />
+          <Make onChange={this.changeMake} year={this.state.year} />
+          <Model onChange={this.changeModel} year={this.state.year} make={this.state.make} />
+        </div>
+        <Campaign year={this.state.year} make={this.state.make} model={this.state.model} />
+      </div>
+    );
+  }
 }
 
 export default App;

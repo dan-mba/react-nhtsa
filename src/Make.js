@@ -23,7 +23,6 @@ class Make extends React.Component{
   handleChange(e){
     const make = e.target.value;
     this.props.onChange(make);
-    $("select").blur();
   }
   
   componentDidUpdate(){

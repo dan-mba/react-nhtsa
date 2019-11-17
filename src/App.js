@@ -29,12 +29,21 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <h1>NHTSA Recall Datatbase</h1>
         <div className="selectBox">
           <Year onChange={this.changeYear} />
           <Make onChange={this.changeMake} year={this.state.year} />
-          <Model onChange={this.changeModel} year={this.state.year} make={this.state.make} />
+          <Model 
+            onChange={this.changeModel}
+            year={this.state.year}
+            make={this.state.make}
+          />
         </div>
-        <Campaign year={this.state.year} make={this.state.make} model={this.state.model} />
+        <Campaign
+          year={this.state.year}
+          make={this.state.make}
+          model={this.state.model}
+        />
       </div>
     );
   }

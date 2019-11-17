@@ -22,7 +22,6 @@ class Year extends React.Component{
   handleChange(e){
     const year = e.target.value;
     this.props.onChange(year);
-    $("select").blur();
   }
   
   componentDidMount(){

@@ -4,36 +4,26 @@ Model Component
 Gets Model options from server & generates select statement
 
 **********/
-import React from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {endpoint, datatype} from './util/Endpoints';
 import $ from 'jquery';
+import VehicleContext from './VehicleContext';
 
-class Model extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoaded : false,
-      year: "",
-      make: "",
-      models : []
-    };
-    
-    this.handleChange = this.handleChange.bind(this);
-  }
+function Model(){
+  const {year, make, changeModel} = useContext(VehicleContext);
+  const [models, setModels] = useState([]);
   
-  handleChange(e){
+  function handleChange(e){
     const model = e.target.value;
-    this.props.onChange(model);
+    changeModel(model);
   }
   
-  componentDidUpdate(){
-    const {year, make} = this.props;
-    const {isLoaded} = this.state
+  useEffect(() => {
+    if (year === "" || make === "") {
+      setModels([]);
+      return;
+    }
     
-    if((isLoaded && (year === this.state.year) && (make === this.state.make)) || 
-      (year.length === 0) || (make.length === 0)) return;
-    
-    var self = this;
     var xhr = $.ajax({ url: endpoint+'/modelyear/'+year+'/make/'+make+datatype,
                        dataType: 'jsonp',
                        year: year,
@@ -46,32 +36,33 @@ class Model extends React.Component{
         newModels.push(data.Results[i].Model);
       }
       
-      self.setState({ isLoaded: true, models : newModels, year: this.year, make: this.make });
+      setModels(newModels);
     });
-  }
+  },[year,make]);
   
-  render() {
-    const {models, year, make, isLoaded} = this.state;
-
-    return (
-      <div className='selectdiv' id='model'>
-        <select
-          defaultValue=""
-          onChange={this.handleChange}>
-        
-          <option value="">Model:</option>
-          {
-            (isLoaded && (this.props.year === year) && (this.props.make === make)) ? 
-              models.map((model) =>
-                <option value={model.replace('/&/g','_')} key={model}>
-                  {model}
-                </option>
-              ) : ""
-          }
-        </select>
-      </div>
-    );
-  } 
+  return (
+    <div className='selectdiv' id='model'>
+      <VehicleContext.Consumer>
+        {({model}) => {
+          return (
+            <select
+              value={model}
+              onChange={handleChange}
+            >
+              <option value="">Model:</option>
+              {
+                models.map((model) =>
+                  <option value={model.replace('/&/g','_')} key={model}>
+                    {model}
+                  </option>
+                )
+              }
+            </select>
+          );
+      }}
+      </VehicleContext.Consumer>
+    </div>
+  );
 }
 
 export default Model;

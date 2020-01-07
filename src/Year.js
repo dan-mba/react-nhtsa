@@ -4,27 +4,23 @@ Year Component
 Gets year data from server & generates select statement
 
 **********/
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {endpoint, datatype} from './util/Endpoints';
 import $ from 'jquery';
+import VehicleContext from './VehicleContext';
 
-class Year extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoaded : false,
-      years : []
-    };
-    
-    this.handleChange = this.handleChange.bind(this);
-  }
+function Year() {
+  const {changeYear} = useContext(VehicleContext);
+  const [years, setYears] = useState([]);
   
-  handleChange(e){
+  
+  function handleChange(e){
     const year = e.target.value;
-    this.props.onChange(year);
+    changeYear(year);
   }
   
-  componentDidMount(){
+  useEffect(() => {
+    if(years.length) return;
     var xhr = $.ajax({ url: endpoint+datatype,
                        dataType: 'jsonp'
                     });
@@ -36,29 +32,24 @@ class Year extends React.Component{
         newYears.push(data.Results[i].ModelYear);
       }
       
-      this.setState({ isLoaded: true, years : newYears });
-    }.bind(this));
-  }
+      setYears(newYears);
+    });
+  });
   
-  render() {
-    const {isLoaded, years} = this.state;
-    
-    return (
-      <div className='selectdiv' id='year'>
-        <select onChange={this.handleChange}>
-          <option value="">Year:</option>
-          {
-            isLoaded ?
-              years.map((year) =>
-                <option value={year} key={year.toString()}>
-                  {year}
-                </option>
-              ) : ""
-          }
-        </select>
-      </div>
-    );
-  } 
+  return (
+    <div className='selectdiv' id='year'>
+      <select onChange={handleChange}>
+        <option value="">Year:</option>
+        {
+          years.map((year) =>
+            <option value={year} key={year.toString()}>
+              {year}
+            </option>
+          )
+        }
+      </select>
+    </div>
+  );
 }
 
 export default Year;

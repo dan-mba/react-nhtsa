@@ -6,7 +6,7 @@ Gets make data from server & generates select statement
 **********/
 import React, {useEffect, useState, useContext} from 'react';
 import {endpoint, datatype} from './util/Endpoints';
-import $ from 'jquery';
+import axios from 'axios-jsonp-pro';
 import VehicleContext from './VehicleContext';
 
 function Make() {
@@ -20,18 +20,17 @@ function Make() {
   
   useEffect(() => {
     if(year === "") return;
-    var xhr = $.ajax({ url: endpoint+'/modelyear/'+year+datatype,
-                       dataType: 'jsonp'
-                    });
-    xhr.done( function(data) {
-      var newMakes = [];
+    axios
+      .jsonp(endpoint+'/modelyear/'+year+datatype)
+      .then( data => {
+        let newMakes = [];
       
-      for(var i=0; i < data.Count; i++) {
-        newMakes.push(data.Results[i].Make);
-      }
+        for(let i=0; i < data.Count; i++) {
+          newMakes.push(data.Results[i].Make);
+        }
       
-      setMakes(newMakes);
-    });
+        setMakes(newMakes);
+      });
   }, [year]);
   
   return (

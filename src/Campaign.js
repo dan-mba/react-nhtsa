@@ -6,7 +6,7 @@ Gets campaign data from server & displays it
 **********/
 import React, {useContext, useEffect, useState} from 'react';
 import {endpoint, datatype} from './util/Endpoints';
-import $ from 'jquery';
+import axios from 'axios-jsonp-pro';
 import VehicleContext from './VehicleContext';
 
 function Campaign() {
@@ -19,22 +19,18 @@ function Campaign() {
       return;
     }
 
-    var xhr = $.ajax({ url: endpoint+'/modelyear/'+year+'/make/'+make+'/model/'+model+datatype,
-                       dataType: 'jsonp',
-                       year: year,
-                       make: make,
-                       model: model
-                    });
-    xhr.done( function(data) {
-      var newCampaigns = [...data.Results];
+    axios
+      .jsonp(endpoint+'/modelyear/'+year+'/make/'+make+'/model/'+model+datatype)
+      .then(data => {
+        let newCampaigns = [...data.Results];
       
-      setCampaigns(newCampaigns);
-    });
+        setCampaigns(newCampaigns);
+      });
   }, [year,make,model]);
   
   function d(date) {
     if (!date) return "";
-    var newDate = new Date(parseInt(date.substr(6)));
+    let newDate = new Date(parseInt(date.substr(6)));
     return newDate.toString().split(" ").slice(0,4).join(" ");
   }
                            

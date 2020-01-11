@@ -6,7 +6,7 @@ Gets year data from server & generates select statement
 **********/
 import React, {useContext, useEffect, useState} from 'react';
 import {endpoint, datatype} from './util/Endpoints';
-import $ from 'jquery';
+import axios from 'axios-jsonp-pro';
 import VehicleContext from './VehicleContext';
 
 function Year() {
@@ -21,19 +21,18 @@ function Year() {
   
   useEffect(() => {
     if(years.length) return;
-    var xhr = $.ajax({ url: endpoint+datatype,
-                       dataType: 'jsonp'
-                    });
-    xhr.done( function(data) {
-      var newYears = [];
+    axios
+      .jsonp(endpoint+datatype)
+      .then( data => {
+        let newYears = [];
       
-      /* Start at 1 because the value at Results[0] is erroneus */
-      for(var i=1; i < data.Count; i++) {
-        newYears.push(data.Results[i].ModelYear);
-      }
+        /* Start at 1 because the value at Results[0] is erroneus */
+        for (let i=1; i < data.Count; i++) {
+          newYears.push(data.Results[i].ModelYear);
+        }
       
-      setYears(newYears);
-    });
+        setYears(newYears);
+      });
   });
   
   return (

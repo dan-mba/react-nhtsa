@@ -6,7 +6,7 @@ Gets Model options from server & generates select statement
 **********/
 import React, {useContext, useState, useEffect} from 'react';
 import {endpoint, datatype} from './util/Endpoints';
-import $ from 'jquery';
+import axios from 'axios-jsonp-pro';
 import VehicleContext from './VehicleContext';
 
 function Model(){
@@ -24,20 +24,17 @@ function Model(){
       return;
     }
     
-    var xhr = $.ajax({ url: endpoint+'/modelyear/'+year+'/make/'+make+datatype,
-                       dataType: 'jsonp',
-                       year: year,
-                       make: make
-                    });
-    xhr.done( function(data) {
-      var newModels = [];
+    axios
+      .jsonp(endpoint+'/modelyear/'+year+'/make/'+make+datatype)
+      .then( data => {
+        let newModels = [];
       
-      for(var i=0; i < data.Count; i++) {
-        newModels.push(data.Results[i].Model);
-      }
+        for(let i=0; i < data.Count; i++) {
+          newModels.push(data.Results[i].Model);
+        }
       
-      setModels(newModels);
-    });
+        setModels(newModels);
+      });
   },[year,make]);
   
   return (

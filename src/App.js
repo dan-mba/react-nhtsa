@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
-import Year from './Year';
-import Make from './Make';
-import Model from './Model';
-import Campaign from './Campaign';
+import {ThemeProvider, CssBaseline, Typography} from '@material-ui/core';
+import SelectBox from './components/SelectBox';
+import Campaign from './components/Campaign';
 import VehicleContext from './VehicleContext';
+import theme from './util/Theme'
 
 function App() {
   const [year, setYear] = useState("");
   const [make, setMake] = useState("");
   const [model, setModel] = useState("");
+
 
   function changeYear(year) {
     setYear(year);
@@ -31,17 +32,21 @@ function App() {
   };
 
   return (
-    <VehicleContext.Provider value={context}>
-      <div>
-        <h1>NHTSA Recall Datatbase</h1>
-        <div className="selectBox">
-          <Year/>
-          <Make/>
-          <Model/>
-        </div>
-        <Campaign/>
-      </div>
-    </VehicleContext.Provider>
+    <ThemeProvider theme={theme}>
+      <React.Fragment>
+        <CssBaseline />
+        <VehicleContext.Provider value={context}>
+          <Typography
+            align='center'
+            color='secondary'
+            variant='h4'
+            gutterBottom
+          >NHTSA Recall Database</Typography>
+          <SelectBox/>
+          <Campaign/>
+        </VehicleContext.Provider>
+      </React.Fragment>
+    </ThemeProvider>
   );
 }
 

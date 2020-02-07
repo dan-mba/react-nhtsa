@@ -5,9 +5,10 @@ Gets Model options from server & generates select statement
 
 **********/
 import React, {useContext, useState, useEffect} from 'react';
-import {endpoint, datatype} from './util/Endpoints';
+import {endpoint, datatype} from '../util/Endpoints';
 import axios from 'axios-jsonp-pro';
-import VehicleContext from './VehicleContext';
+import MySelect from './MySelect'
+import VehicleContext from '../VehicleContext';
 
 function Model(){
   const {year, make, changeModel} = useContext(VehicleContext);
@@ -38,27 +39,26 @@ function Model(){
   },[year,make]);
   
   return (
-    <div className='selectdiv' id='model'>
-      <VehicleContext.Consumer>
-        {({model}) => {
-          return (
-            <select
-              value={model}
-              onChange={handleChange}
-            >
-              <option value="">Model:</option>
-              {
-                models.map((model) =>
-                  <option value={model.replace('/&/g','_')} key={model}>
-                    {model}
-                  </option>
-                )
-              }
-            </select>
-          );
-      }}
-      </VehicleContext.Consumer>
-    </div>
+    <VehicleContext.Consumer>
+      {({model}) => {
+        return (
+          <MySelect
+            value={model}
+            onChange={handleChange}
+            label="Model"
+          >
+            <option value=""/>
+            {
+              models.map((model) =>
+                <option value={model.replace('/&/g','_')} key={model}>
+                  {model}
+                </option>
+              )
+            }
+          </MySelect>
+        );
+    }}
+    </VehicleContext.Consumer>
   );
 }
 

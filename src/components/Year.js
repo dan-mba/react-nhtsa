@@ -5,9 +5,10 @@ Gets year data from server & generates select statement
 
 **********/
 import React, {useContext, useEffect, useState} from 'react';
-import {endpoint, datatype} from './util/Endpoints';
+import {endpoint, datatype} from '../util/Endpoints';
 import axios from 'axios-jsonp-pro';
-import VehicleContext from './VehicleContext';
+import MySelect from './MySelect'
+import VehicleContext from '../VehicleContext';
 
 function Year() {
   const {changeYear} = useContext(VehicleContext);
@@ -36,18 +37,16 @@ function Year() {
   });
   
   return (
-    <div className='selectdiv' id='year'>
-      <select onChange={handleChange}>
-        <option value="">Year:</option>
-        {
-          years.map((year) =>
-            <option value={year} key={year.toString()}>
-              {year}
-            </option>
-          )
-        }
-      </select>
-    </div>
+    <MySelect label='Year' onChange={handleChange}>
+      <option value=""/>
+      {
+        years.map((year) =>
+          <option value={year} key={year.toString()}>
+            {year}
+          </option>
+        )
+      }
+    </MySelect>
   );
 }
 

@@ -5,9 +5,10 @@ Gets make data from server & generates select statement
 
 **********/
 import React, {useEffect, useState, useContext} from 'react';
-import {endpoint, datatype} from './util/Endpoints';
+import {endpoint, datatype} from '../util/Endpoints';
 import axios from 'axios-jsonp-pro';
-import VehicleContext from './VehicleContext';
+import MySelect from './MySelect';
+import VehicleContext from '../VehicleContext';
 
 function Make() {
   const {year, changeMake} = useContext(VehicleContext);
@@ -34,27 +35,26 @@ function Make() {
   }, [year]);
   
   return (
-    <div className='selectdiv' id='make'>
-      <VehicleContext.Consumer>
-        {({make}) => {
-          return (
-            <select
-              value={make}
-              onChange={handleChange}
-            >
-              <option value="">Make:</option>
-              {
-                makes.map((make) =>
-                  <option value={make.replace('/&/g','_')} key={make}>
-                    {make}
-                  </option>
-                )
-              }
-            </select>
-          )
-        }}
-      </VehicleContext.Consumer>
-    </div>
+    <VehicleContext.Consumer>
+      {({make}) => {
+        return (
+          <MySelect
+            value={make}
+            label="Make"
+            onChange={handleChange}
+          >
+            <option value=""/>
+            {
+              makes.map((make) =>
+                <option value={make.replace('/&/g','_')} key={make}>
+                  {make}
+                </option>
+              )
+            }
+          </MySelect>
+        )
+      }}
+    </VehicleContext.Consumer>
   );
 
 }

@@ -39,9 +39,10 @@ function Campaign() {
       .jsonp(endpoint+'/modelyear/'+year+'/make/'+make+'/model/'+model+datatype)
       .then(data => {
         let newCampaigns = data.Results.map(data => {
+          // Convert UNIX timestamp (in ms) from Microsoft JSON format
           const d = data.ReportReceivedDate ?
-            new Date(parseInt(data.ReportReceivedDate.substr(6))) : new Date(0);
-          return {...data, ReportReceivedDate: d}
+            parseInt(data.ReportReceivedDate.slice(6,-1).split("-")[0]) : 0;
+          return {...data, ReportReceivedDate: new Date(d)}
         });
         newCampaigns.sort((a,b) => b.ReportReceivedDate - a.ReportReceivedDate);
       
@@ -50,7 +51,7 @@ function Campaign() {
   }, [year,make,model]);
   
   function d(date) {
-    return date.toString().split(" ").slice(0,4).join(" ");
+    return date.toDateString().slice(4);
   }
                            
   return (

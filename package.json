@@ -17,7 +17,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prebuild": "shx rm -rf docs/*",
-    "postbuild": "shx cp -a build/. docs"
+    "postbuild": "shx cp -r build/. docs"
   },
   "eslintConfig": {
     "extends": "react-app"

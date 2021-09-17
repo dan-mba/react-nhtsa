@@ -1,9 +1,9 @@
 /*
   Material-UI Theme Object
 */
-import {createMuiTheme} from '@material-ui/core'
+import {createTheme} from '@mui/material/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: '#212121'
@@ -19,9 +19,9 @@ const theme = createMuiTheme({
       secondary: '#004c7b'
     }
   },
-  overrides: {
+  components: {
     MuiCssBaseline: {
-      '@global': {
+      styleOverrides: {
         body: {
           maxWidth: 1000,
           margin: '0 auto',

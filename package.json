@@ -4,8 +4,10 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "@material-ui/core": "^4.12.3",
-    "@material-ui/icons": "^4.11.2",
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
+    "@mui/icons-material": "^5.0.0",
+    "@mui/material": "^5.0.0",
     "axios-jsonp-pro": "^1.1.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -34,7 +36,7 @@
   },
   "devDependencies": {
     "eslint": "^7.32.0",
-    "eslint-plugin-react": "^7.25.1",
+    "eslint-plugin-react": "^7.25.2",
     "prop-types": "^15.7.2",
     "shx": "^0.3.3"
   }

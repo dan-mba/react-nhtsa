@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {ThemeProvider, CssBaseline, Typography} from '@material-ui/core';
+import { ThemeProvider, StyledEngineProvider, CssBaseline, Typography } from '@mui/material';
 import SelectBox from './components/SelectBox';
 import Campaign from './components/Campaign';
 import VehicleContext from './VehicleContext';
@@ -32,21 +32,23 @@ function App() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <React.Fragment>
-        <CssBaseline />
-        <VehicleContext.Provider value={context}>
-          <Typography
-            align='center'
-            color='secondary'
-            variant='h4'
-            gutterBottom
-          >NHTSA Recall Database</Typography>
-          <SelectBox/>
-          <Campaign/>
-        </VehicleContext.Provider>
-      </React.Fragment>
-    </ThemeProvider>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <React.Fragment>
+          <CssBaseline />
+          <VehicleContext.Provider value={context}>
+            <Typography
+              align='center'
+              color='secondary'
+              variant='h4'
+              gutterBottom
+            >NHTSA Recall Database</Typography>
+            <SelectBox/>
+            <Campaign/>
+          </VehicleContext.Provider>
+        </React.Fragment>
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 }
 

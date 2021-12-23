@@ -4,10 +4,10 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "@emotion/react": "^11.7.0",
+    "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.2.5",
-    "@mui/material": "^5.2.3",
+    "@mui/material": "^5.2.5",
     "axios-jsonp-pro": "^1.1.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

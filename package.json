@@ -35,7 +35,7 @@
     "eslint": "8.10.0",
     "eslint-plugin-react": "^7.29.2",
     "prop-types": "^15.8.1",
-    "vite": "^2.8.4",
+    "vite": "^2.8.6",
     "vite-plugin-html": "^3.0.3"
   }
 }

@@ -1,4 +1,4 @@
 name: "My codeQL Config"
 
 paths-ignore:
-  - 'docs/**'
+  - 'docs/**/*.js'

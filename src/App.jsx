@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import { ThemeProvider, StyledEngineProvider, CssBaseline, Typography } from '@mui/material';
 import SelectBox from './components/SelectBox';
 import Campaign from './components/Campaign';
@@ -34,7 +34,7 @@ function App() {
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
-        <React.Fragment>
+        <>
           <CssBaseline />
           <VehicleContext.Provider value={context}>
             <Typography
@@ -46,7 +46,7 @@ function App() {
             <SelectBox/>
             <Campaign/>
           </VehicleContext.Provider>
-        </React.Fragment>
+        </>
       </ThemeProvider>
     </StyledEngineProvider>
   );

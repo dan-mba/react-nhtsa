@@ -4,9 +4,8 @@ Model Component
 Gets Model options from server & generates select statement
 
 **********/
-import React, {useContext, useState, useEffect} from 'react';
-import {endpoint, datatype} from '../util/Endpoints';
-import axios from 'axios-jsonp-pro';
+import {useContext, useState, useEffect} from 'react';
+import {endpoint, datatype, proxyFetch} from '../util/Endpoints';
 import MySelect from './MySelect'
 import VehicleContext from '../VehicleContext';
 
@@ -25,8 +24,7 @@ function Model(){
       return;
     }
     
-    axios
-      .jsonp(endpoint+'/modelyear/'+year+'/make/'+make+datatype)
+    proxyFetch(endpoint+'/modelyear/'+year+'/make/'+make+datatype)
       .then( data => {
         let newModels = [];
       

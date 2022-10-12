@@ -4,9 +4,8 @@ Year Component
 Gets year data from server & generates select statement
 
 **********/
-import React, {useContext, useEffect, useState} from 'react';
-import {endpoint, datatype} from '../util/Endpoints';
-import axios from 'axios-jsonp-pro';
+import {useContext, useEffect, useState} from 'react';
+import {endpoint, datatype, proxyFetch} from '../util/Endpoints';
 import MySelect from './MySelect'
 import VehicleContext from '../VehicleContext';
 
@@ -22,12 +21,11 @@ function Year() {
   
   useEffect(() => {
     if(years.length) return;
-    axios
-      .jsonp(endpoint+datatype)
+    proxyFetch(endpoint+datatype)
       .then( data => {
         let newYears = [];
       
-        /* Start at 1 because the value at Results[0] is erroneus */
+        /* Start at 1 because the value at Results[0] is erroneous */
         for (let i=1; i < data.Count; i++) {
           newYears.push(data.Results[i].ModelYear);
         }

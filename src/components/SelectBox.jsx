@@ -2,7 +2,6 @@
   SelectBox Component
   Groups the Year, Make, & Model components in a responsive way
 */
-import React from 'react';
 import {Grid} from '@mui/material';
 import {styled} from '@mui/material/styles';
 import Year from './Year';

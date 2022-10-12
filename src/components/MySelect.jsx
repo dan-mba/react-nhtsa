@@ -2,7 +2,6 @@
   MySelect Component
   Common select component for consistency
 */
-import React from 'react';
 import {NativeSelect, FormControl, InputLabel} from '@mui/material';
 import {styled} from '@mui/material/styles';
 import PropTypes from 'prop-types';

@@ -4,10 +4,9 @@ Campaign Component
 Gets campaign data from server & displays it
 
 **********/
-import React, {useContext, useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {Grid, Typography, Card, CardHeader, CardContent} from '@mui/material';
-import {endpoint, datatype} from '../util/Endpoints';
-import axios from 'axios-jsonp-pro';
+import {endpoint, datatype, proxyFetch} from '../util/Endpoints';
 import VehicleContext from '../VehicleContext';
 
 function Campaign() {
@@ -20,8 +19,7 @@ function Campaign() {
       return;
     }
     
-    axios
-    .jsonp(endpoint+'/modelyear/'+year+'/make/'+make+'/model/'+model+datatype)
+    proxyFetch(endpoint+'/modelyear/'+year+'/make/'+make+'/model/'+model+datatype)
     .then(data => {
       let newCampaigns = data.Results.map(data => {
         // Convert UNIX timestamp (in ms) from Microsoft JSON format

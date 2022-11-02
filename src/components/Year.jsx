@@ -21,18 +21,18 @@ function Year() {
   
   useEffect(() => {
     if(years.length) return;
-    proxyFetch(endpoint+datatype)
+    proxyFetch(endpoint+'/modelYears?'+datatype)
       .then( data => {
         let newYears = [];
       
-        /* Start at 1 because the value at Results[0] is erroneous */
-        for (let i=1; i < data.Count; i++) {
-          newYears.push(data.Results[i].ModelYear);
+        for (let i=0; i < data.count-1; i++) {
+          newYears.push(data.results[i].modelYear);
         }
+        newYears.sort((a,b) => (b-a))
       
         setYears(newYears);
       });
-  });
+  },[]);
   
   return (
     <MySelect label='Year' onChange={handleChange}>

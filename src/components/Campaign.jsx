@@ -6,7 +6,7 @@ Gets campaign data from server & displays it
 **********/
 import {useContext, useEffect, useState} from 'react';
 import {Grid, Typography, Card, CardHeader, CardContent} from '@mui/material';
-import {endpoint, datatype, proxyFetch} from '../util/Endpoints';
+import {recallEndpoint, datatype, proxyFetch} from '../util/Endpoints';
 import VehicleContext from '../VehicleContext';
 
 function Campaign() {
@@ -19,13 +19,17 @@ function Campaign() {
       return;
     }
     
-    proxyFetch(endpoint+'/modelyear/'+year+'/make/'+make+'/model/'+model+datatype)
+    proxyFetch(`${recallEndpoint}/?modelYear=${year}&make=${make}&model=${model}&${datatype}`)
     .then(data => {
-      let newCampaigns = data.Results.map(data => {
-        // Convert UNIX timestamp (in ms) from Microsoft JSON format
-        const d = data.ReportReceivedDate ?
-        parseInt(data.ReportReceivedDate.slice(6,-1).split("-")[0]) : 0;
-        return {...data, ReportReceivedDate: new Date(d)}
+      let newCampaigns = [];
+      
+      for(let i=0; i < data.Count; i++) {
+        newCampaigns.push(data.results[i]);
+      }
+
+      newCampaigns = newCampaigns.map(data => {
+        const d = data.ReportReceivedDate.split('/');
+        return {...data, ReportReceivedDate: new Date(`${d[1]}/${d[0]}/${d[2]}`)}
       });
       newCampaigns.sort((a,b) => b.ReportReceivedDate - a.ReportReceivedDate);
       

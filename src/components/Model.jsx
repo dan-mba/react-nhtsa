@@ -24,12 +24,12 @@ function Model(){
       return;
     }
     
-    proxyFetch(endpoint+'/modelyear/'+year+'/make/'+make+datatype)
+    proxyFetch(`${endpoint}/models?modelYear=${year}&make=${make}&${datatype}`)
       .then( data => {
         let newModels = [];
       
-        for(let i=0; i < data.Count; i++) {
-          newModels.push(data.Results[i].Model);
+        for(let i=0; i < data.count; i++) {
+          newModels.push(data.results[i].model);
         }
       
         setModels(newModels);

@@ -20,12 +20,12 @@ function Make() {
   
   useEffect(() => {
     if(year === "") return;
-    proxyFetch(endpoint+'/modelyear/'+year+datatype)
+    proxyFetch(`${endpoint}/makes/?modelYear=${year}&${datatype}`)
       .then( data => {
         let newMakes = [];
       
-        for(let i=0; i < data.Count; i++) {
-          newMakes.push(data.Results[i].Make);
+        for(let i=0; i < data.count; i++) {
+          newMakes.push(data.results[i].make);
         }
       
         setMakes(newMakes);

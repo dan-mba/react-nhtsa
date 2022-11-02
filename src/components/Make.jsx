@@ -4,9 +4,8 @@ Make Component
 Gets make data from server & generates select statement
 
 **********/
-import React, {useEffect, useState, useContext} from 'react';
-import {endpoint, datatype} from '../util/Endpoints';
-import axios from 'axios-jsonp-pro';
+import {useEffect, useState, useContext} from 'react';
+import {endpoint, datatype, proxyFetch} from '../util/Endpoints';
 import MySelect from './MySelect';
 import VehicleContext from '../VehicleContext';
 
@@ -21,13 +20,12 @@ function Make() {
   
   useEffect(() => {
     if(year === "") return;
-    axios
-      .jsonp(endpoint+'/modelyear/'+year+datatype)
+    proxyFetch(`${endpoint}/makes/?modelYear=${year}&${datatype}`)
       .then( data => {
         let newMakes = [];
       
-        for(let i=0; i < data.Count; i++) {
-          newMakes.push(data.Results[i].Make);
+        for(let i=0; i < data.count; i++) {
+          newMakes.push(data.results[i].make);
         }
       
         setMakes(newMakes);

@@ -32,27 +32,16 @@ export default function MySelect({children, label, value, onChange}) {
       }}>
         {label}
       </InputLabel>
-      {value ? 
-        <StyledSelect
-          value={value} 
-          inputProps={{
-            name: label,
-            id: label
-          }}
-          onChange={onChange}
-        >
-          {children}
-        </StyledSelect> : 
-        <StyledSelect
-          inputProps={{
-            name: label,
-            id: label
-          }}
-          onChange={onChange}
-        >
-          {children}
-        </StyledSelect>
-      }
+      <StyledSelect
+        value={value} 
+        inputProps={{
+          name: label,
+          id: label
+        }}
+        onChange={onChange}
+      >
+        {children}
+      </StyledSelect>
     </FormControl>
     )
 }

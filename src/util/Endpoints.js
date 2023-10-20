@@ -2,8 +2,8 @@
   Base endpoint for NHTSA Recalls REST API
 */
 
-export const endpoint = "api.nhtsa.gov/products/vehicle";
-export const recallEndpoint = "api.nhtsa.gov/recalls/recallsByVehicle";
+export const endpoint = "https://api.nhtsa.gov/products/vehicle";
+export const recallEndpoint = "https://api.nhtsa.gov/recalls/recallsByVehicle";
 export const datatype = "issueType=r";
-const proxy = 'https://api.codetabs.com/v1/proxy/?quest=';
-export const proxyFetch = (api) => fetch(proxy+api).then(res => res.json());
+const proxy = 'https://corsproxy.io/?';
+export const proxyFetch = (api) => fetch(proxy + encodeURIComponent(api)).then(res => res.json());

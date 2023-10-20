@@ -1,0 +1,19 @@
+#dependabot configuration for NPM
+
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      emotion:
+        patterns:
+          - "@emotion*"
+      mui:
+        patterns:
+          - "@mui*"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"

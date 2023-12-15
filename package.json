@@ -7,9 +7,8 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.14.19",
-    "@mui/material": "^5.14.20",
-    "axios-jsonp-pro": "^1.1.8",
+    "@mui/icons-material": "^5.15.0",
+    "@mui/material": "^5.15.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -36,7 +35,7 @@
     "eslint": "^8.55.0",
     "eslint-plugin-react": "^7.33.2",
     "prop-types": "^15.8.1",
-    "vite": "^5.0.8",
+    "vite": "^5.0.9",
     "vite-plugin-html": "^3.2.0"
   }
 }

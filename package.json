@@ -31,11 +31,11 @@
     ]
   },
   "devDependencies": {
-    "@eslint/js": "^9.4.0",
+    "@eslint/js": "^9.5.0",
     "@vitejs/plugin-react": "^4.3.1",
-    "eslint": "^9.4.0",
+    "eslint": "^9.5.0",
     "eslint-plugin-react": "^7.34.2",
-    "globals": "^15.4.0",
+    "globals": "^15.6.0",
     "prop-types": "^15.8.1",
     "vite": "^5.2.13",
     "vite-plugin-html": "^3.2.2"

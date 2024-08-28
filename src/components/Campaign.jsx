@@ -5,24 +5,40 @@ Gets campaign data from server & displays it
 
 **********/
 import {useContext, useEffect, useState} from 'react';
-import {Grid, Typography, Card, CardHeader, CardContent} from '@mui/material';
+import {Grid2, Typography, Card, CardHeader, CardContent} from '@mui/material';
 import {recallEndpoint, datatype, proxyFetch} from '../util/Endpoints';
 import VehicleContext from '../VehicleContext';
 
 function Campaign() {
   const {year, make, model} = useContext(VehicleContext);
   const [campaigns, setCampaigns] = useState([]);
+  const [failMod, setFailMod] = useState("");
+  const [err, setErr] = useState(false);
   
   useEffect(() => {
     if (year === "" || make === "" || model === "") {
       setCampaigns([]);
+      setErr(false);
+      setFailMod("");
       return;
     }
+
+    const adjMod = failMod === model ? failMod.split(" ")[0] : model;
     
-    proxyFetch(`${recallEndpoint}/?modelYear=${year}&make=${make}&model=${model}&${datatype}`)
+    proxyFetch(`${recallEndpoint}/?modelYear=${year}&make=${make}&model=${adjMod}&${datatype}`)
     .then(data => {
       let newCampaigns = [];
-      
+
+      if (data.Count == 0) {
+        if (model.includes(" ") && !err) {
+          setFailMod(model);
+          return;
+        }
+        setErr(true);
+        setFailMod("");
+        return;
+      }
+
       for(let i=0; i < data.Count; i++) {
         newCampaigns.push(data.results[i]);
       }
@@ -34,25 +50,43 @@ function Campaign() {
       newCampaigns.sort((a,b) => b.ReportReceivedDate - a.ReportReceivedDate);
       
       setCampaigns(newCampaigns);
+      setErr(false);
     });
-  }, [year,make,model]);
+  }, [year,make,model,failMod]);
   
   function d(date) {
     return date.toDateString().slice(4);
   }
   
   return (
-    <Grid container justifyContent='center' sx={{
+    (<Grid2 container justifyContent='center' sx={{
       margin: 0,
       width: '100%'
 
     }}>
-      {
+      { err ?
+        <Grid2
+          sx={{padding: '16px'}}
+          size={{
+            sm: 12,
+            md: 6
+          }}>
+          <Card sx={{height: '100%'}}>
+            <CardContent sx={{height: '100%'}}>
+              <Typography variant="body2" paragraph>
+                Error retrieving data
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid2> :
         campaigns.map((campaign) =>
-          <Grid item sm={12} md={6}
+          <Grid2
             sx={{padding: '16px'}}
             key={campaign.NHTSACampaignNumber}
-          >
+            size={{
+              sm: 12,
+              md: 6
+            }}>
             <Card sx={{height: '100%'}}>
               <CardHeader
                 title={campaign.NHTSACampaignNumber}
@@ -71,10 +105,10 @@ function Campaign() {
                 </Typography>
               </CardContent>
             </Card>
-          </Grid>
+          </Grid2>
         )
       }
-    </Grid>
+    </Grid2>)
   );
 }
 

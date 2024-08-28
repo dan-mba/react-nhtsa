@@ -31,6 +31,9 @@ function Model(){
         for(let i=0; i < data.count; i++) {
           newModels.push(data.results[i].model);
         }
+
+        const models = new Set(newModels);
+        newModels = Array.from(models).sort();
       
         setModels(newModels);
       });

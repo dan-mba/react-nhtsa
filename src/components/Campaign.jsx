@@ -10,15 +10,13 @@ import {recallEndpoint, datatype, proxyFetch} from '../util/Endpoints';
 import VehicleContext from '../VehicleContext';
 
 function Campaign() {
-  const {year, make, model} = useContext(VehicleContext);
+  const {year, make, model, err, setErr} = useContext(VehicleContext);
   const [campaigns, setCampaigns] = useState([]);
   const [failMod, setFailMod] = useState("");
-  const [err, setErr] = useState(false);
   
   useEffect(() => {
     if (year === "" || make === "" || model === "") {
       setCampaigns([]);
-      setErr(false);
       setFailMod("");
       return;
     }
@@ -50,7 +48,6 @@ function Campaign() {
       newCampaigns.sort((a,b) => b.ReportReceivedDate - a.ReportReceivedDate);
       
       setCampaigns(newCampaigns);
-      setErr(false);
     });
   }, [year,make,model,failMod]);
   
@@ -59,11 +56,7 @@ function Campaign() {
   }
   
   return (
-    (<Grid2 container justifyContent='center' sx={{
-      margin: 0,
-      width: '100%'
-
-    }}>
+    (<Grid2 container justifyContent='center' spacing={2}>
       { err ?
         <Grid2
           sx={{padding: '16px'}}
@@ -71,17 +64,19 @@ function Campaign() {
             sm: 12,
             md: 6
           }}>
-          <Card sx={{height: '100%'}}>
-            <CardContent sx={{height: '100%'}}>
-              <Typography variant="body2" paragraph>
-                Error retrieving data
+          <Card>
+            <CardContent >
+              <Typography variant="body1" align="center">
+                No Data Returned
+              </Typography>
+              <Typography variant="body1" align="center">
+                Either no recalls or API failure
               </Typography>
             </CardContent>
           </Card>
         </Grid2> :
         campaigns.map((campaign) =>
           <Grid2
-            sx={{padding: '16px'}}
             key={campaign.NHTSACampaignNumber}
             size={{
               sm: 12,
@@ -94,13 +89,13 @@ function Campaign() {
               >
               </CardHeader>
               <CardContent sx={{height: '100%'}}>
-                <Typography variant="body2" paragraph>
+                <Typography variant="body2" sx={{marginBottom: '1em'}}>
                   {campaign.Summary}
                 </Typography>
-                <Typography variant="body2" paragraph>
+                <Typography variant="body2"  sx={{marginBottom: '1em'}}>
                   {campaign.Conequence}
                 </Typography>
-                <Typography variant="body2" paragraph>
+                <Typography variant="body2">
                   {campaign.Remedy}
                 </Typography>
               </CardContent>

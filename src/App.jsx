@@ -9,17 +9,25 @@ function App() {
   const [year, setYear] = useState("");
   const [make, setMake] = useState("");
   const [model, setModel] = useState("");
+  const [err, setErr] = useState(false);
 
 
   function changeYear(year) {
     setYear(year);
     setMake("");
     setModel("");
+    setErr(false);
   }
 
   function changeMake(make){
     setMake(make);
     setModel("");
+    setErr(false);
+  }
+
+  function changeModel(model){
+    setModel(model);
+    setErr(false);
   }
 
   const context = {
@@ -28,7 +36,9 @@ function App() {
     make,
     changeMake,
     model,
-    changeModel: setModel
+    changeModel,
+    err,
+    setErr
   };
 
   return (

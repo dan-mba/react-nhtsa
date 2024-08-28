@@ -4,7 +4,6 @@
 */
 import {NativeSelect, FormControl, InputLabel} from '@mui/material';
 import {styled} from '@mui/material/styles';
-import PropTypes from 'prop-types';
 
 const StyledSelect = styled(NativeSelect)({
   lineHeight: '1.1876em',
@@ -46,9 +45,3 @@ export default function MySelect({children, label, value, onChange}) {
     )
 }
 
-MySelect.propTypes = {
-  children: PropTypes.array,
-  label: PropTypes.string,
-  value: PropTypes.string,
-  onChange: PropTypes.func
-};

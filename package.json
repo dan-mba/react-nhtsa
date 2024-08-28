@@ -5,10 +5,10 @@
   "type": "module",
   "homepage": ".",
   "dependencies": {
-    "@emotion/react": "^11.13.0",
+    "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
-    "@mui/icons-material": "^5.16.7",
-    "@mui/material": "^5.16.7",
+    "@mui/icons-material": "^6.0.0",
+    "@mui/material": "^6.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -16,9 +16,6 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview --port 8080"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [
@@ -33,11 +30,10 @@
   "devDependencies": {
     "@eslint/js": "^9.9.0",
     "@vitejs/plugin-react": "^4.3.1",
-    "eslint": "^9.9.0",
+    "eslint": "^9.9.1",
     "eslint-plugin-react": "^7.35.0",
     "globals": "^15.9.0",
-    "prop-types": "^15.8.1",
-    "vite": "^5.4.1",
+    "vite": "^5.4.2",
     "vite-plugin-html": "^3.2.2"
   }
 }

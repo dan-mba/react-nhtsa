@@ -48,7 +48,8 @@ function Campaign() {
       newCampaigns.sort((a,b) => b.ReportReceivedDate - a.ReportReceivedDate);
       
       setCampaigns(newCampaigns);
-    });
+    })
+    .catch(e => setErr(true));
   }, [year,make,model,failMod]);
   
   function d(date) {

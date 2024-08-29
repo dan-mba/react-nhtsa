@@ -6,7 +6,7 @@ Gets campaign data from server & displays it
 **********/
 import {useContext, useEffect, useState} from 'react';
 import {Grid2, Typography, Card, CardHeader, CardContent} from '@mui/material';
-import {recallEndpoint, datatype, proxyFetch} from '../util/Endpoints';
+import {recallEndpoint, proxyFetch} from '../util/Endpoints';
 import VehicleContext from '../VehicleContext';
 
 function Campaign() {
@@ -23,7 +23,7 @@ function Campaign() {
 
     const adjMod = failMod === model ? failMod.split(" ")[0] : model;
     
-    proxyFetch(`${recallEndpoint}/?modelYear=${year}&make=${make}&model=${adjMod}&${datatype}`)
+    proxyFetch(`${recallEndpoint}/?modelYear=${year}&make=${make}&model=${adjMod}`)
     .then(data => {
       let newCampaigns = [];
 
@@ -94,7 +94,7 @@ function Campaign() {
                   {campaign.Summary}
                 </Typography>
                 <Typography variant="body2"  sx={{marginBottom: '1em'}}>
-                  {campaign.Conequence}
+                  {campaign.Consequence}
                 </Typography>
                 <Typography variant="body2">
                   {campaign.Remedy}

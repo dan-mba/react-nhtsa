@@ -20,7 +20,7 @@ function SelectBox() {
       lineHeight: 1.43,
       fontSize: '.875rem'
     }}>
-      <PaddedGrid  size={{ xs: 4, md: 2 }}>
+      <PaddedGrid size={{ xs: 4, md: 2 }}>
         <Year/>
       </PaddedGrid>
       <PaddedGrid size={{ xs: 8, md: 4 }} >

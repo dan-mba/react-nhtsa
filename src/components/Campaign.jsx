@@ -5,7 +5,7 @@ Gets campaign data from server & displays it
 
 **********/
 import {useContext, useEffect, useState} from 'react';
-import {Grid2, Typography, Card, CardHeader, CardContent} from '@mui/material';
+import {Grid, Typography, Card, CardHeader, CardContent} from '@mui/material';
 import {recallEndpoint, proxyFetch} from '../util/Endpoints';
 import VehicleContext from '../VehicleContext';
 
@@ -57,9 +57,9 @@ function Campaign() {
   }
   
   return (
-    (<Grid2 container justifyContent='center' spacing={2}>
+    (<Grid container justifyContent='center' spacing={2}>
       { err ?
-        <Grid2
+        <Grid
           sx={{padding: '16px'}}
           size={{
             sm: 12,
@@ -75,9 +75,9 @@ function Campaign() {
               </Typography>
             </CardContent>
           </Card>
-        </Grid2> :
+        </Grid> :
         campaigns.map((campaign) =>
-          <Grid2
+          <Grid
             key={campaign.NHTSACampaignNumber}
             size={{
               sm: 12,
@@ -101,10 +101,10 @@ function Campaign() {
                 </Typography>
               </CardContent>
             </Card>
-          </Grid2>
+          </Grid>
         )
       }
-    </Grid2>)
+    </Grid>)
   );
 }
 

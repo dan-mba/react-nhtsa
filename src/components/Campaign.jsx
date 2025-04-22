@@ -50,7 +50,7 @@ function Campaign() {
       setCampaigns(newCampaigns);
     })
     .catch(e => setErr(true));
-  }, [year,make,model,failMod]);
+  }, [year,make,model,failMod,err,setErr]);
   
   function d(date) {
     return date.toDateString().slice(4);

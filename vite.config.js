@@ -2,9 +2,17 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import {createHtmlPlugin} from 'vite-plugin-html';
 
+const ReactCompilerConfig = { /* ... */ };
+
 export default defineConfig({
   plugins: [
-    react(),
+    react({
+      babel: {
+        plugins: [
+          ["babel-plugin-react-compiler", ReactCompilerConfig],
+        ],
+      },
+    }),
     createHtmlPlugin()
   ],
   server: {

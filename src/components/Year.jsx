@@ -20,7 +20,6 @@ function Year() {
   }
   
   useEffect(() => {
-    if(years.length) return;
     proxyFetch(endpoint+'/modelYears?'+datatype)
       .then( data => {
         let newYears = [];

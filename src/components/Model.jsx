@@ -42,7 +42,7 @@ function Model(){
       
         setModels(newModels);
       });
-  },[year,make]);
+  },[year,make,setErr]);
   
   return (
     <VehicleContext.Consumer>

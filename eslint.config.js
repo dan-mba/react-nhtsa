@@ -22,6 +22,7 @@ export default [
     plugins: { 'react-hooks': reactHooks },
     rules: {
       'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/react-compiler': 'error',
       'react-hooks/exhaustive-deps': 'warn',
     }
   }

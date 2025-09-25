@@ -25,11 +25,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+      
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
 
       - name: Setup Node
         uses: actions/setup-node@v5
         with:
-          node-version: "18"
+          node-version: "lts/*"
           cache: "npm"
 
       - name: Setup Pages
@@ -37,8 +40,8 @@ jobs:
 
       - name: Build 
         run: |
-          npm ci
-          npm run build
+          pnpm install
+          pnpm build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4

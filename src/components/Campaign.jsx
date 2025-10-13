@@ -16,6 +16,8 @@ function Campaign() {
   
   useEffect(() => {
     if (year === "" || make === "" || model === "") {
+      // Clear list on reset
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCampaigns([]);
       setFailMod("");
       return;

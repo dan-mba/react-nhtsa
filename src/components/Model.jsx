@@ -20,6 +20,8 @@ function Model(){
   
   useEffect(() => {
     if (year === "" || make === "") {
+      // Clear list on reset
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setModels([]);
       return;
     }

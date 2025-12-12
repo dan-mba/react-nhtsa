@@ -9,6 +9,10 @@ updates:
     cooldown:
       default-days: 1
     groups:
+      react-deps:
+        patterns:
+          - "react"
+          - "react-dom"
       emotion:
         patterns:
           - "@emotion*"

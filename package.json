@@ -10,7 +10,7 @@
     "@mui/icons-material": "^7.3.6",
     "@mui/material": "^7.3.6",
     "react": "^19.2.1",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.1"
   },
   "scripts": {
     "dev": "vite",
@@ -30,14 +30,14 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
-    "@vitejs/plugin-react": "^5.1.1",
+    "@vitejs/plugin-react": "^5.1.2",
     "babel-plugin-react-compiler": "19.1.0-rc.3",
     "eslint": "^9.39.1",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "7.0.1",
     "globals": "^16.5.0",
-    "vite": "^7.2.6",
+    "vite": "^7.2.7",
     "vite-plugin-html": "^3.2.2"
   },
-  "packageManager": "pnpm@10.22.0+sha512.bf049efe995b28f527fd2b41ae0474ce29186f7edcb3bf545087bd61fbbebb2bf75362d1307fda09c2d288e1e499787ac12d4fcb617a974718a6051f2eee741c"
+  "packageManager": "pnpm@10.25.0+sha512.5e82639027af37cf832061bcc6d639c219634488e0f2baebe785028a793de7b525ffcd3f7ff574f5e9860654e098fe852ba8ac5dd5cefe1767d23a020a92f501"
 }

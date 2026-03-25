@@ -1,17 +1,13 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import react, { reactCompilerPreset } from '@vitejs/plugin-react';
+import babel from '@rolldown/plugin-babel';
 import {createHtmlPlugin} from 'vite-plugin-html';
-
-const ReactCompilerConfig = { /* ... */ };
 
 export default defineConfig({
   plugins: [
-    react({
-      babel: {
-        plugins: [
-          ["babel-plugin-react-compiler", ReactCompilerConfig],
-        ],
-      },
+    react(),
+    babel({
+      presets: [reactCompilerPreset()]
     }),
     createHtmlPlugin()
   ],

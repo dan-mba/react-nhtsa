@@ -1,2 +1,4 @@
 minimumReleaseAge: 1440
 legacyPeerDeps: true
+allowBuilds:
+  esbuild: false

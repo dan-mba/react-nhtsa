@@ -59,7 +59,7 @@ function Campaign() {
   }
   
   return (
-    (<Grid container justifyContent='center' spacing={2}>
+    (<Grid container spacing={2} sx={{justifyContent: 'center'}}>
       { err ?
         <Grid
           sx={{padding: '16px'}}

@@ -1,4 +1,5 @@
 minimumReleaseAge: 1440
-legacyPeerDeps: true
 allowBuilds:
   esbuild: false
+overrides:
+  "browserslist": "^4.28.7"

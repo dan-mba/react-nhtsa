@@ -4,13 +4,13 @@ Make Component
 Gets make data from server & generates select statement
 
 **********/
-import {useEffect, useState, useContext} from 'react';
+import {useEffect, useState, use} from 'react';
 import {endpoint, datatype, proxyFetch} from '../util/Endpoints';
 import MySelect from './MySelect';
 import VehicleContext from '../VehicleContext';
 
 function Make() {
-  const {year, changeMake} = useContext(VehicleContext);
+  const {year, changeMake} = use(VehicleContext);
   const [makes, setMakes] = useState([]);
     
   function handleChange(e){

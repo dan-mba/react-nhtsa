@@ -4,13 +4,13 @@ Model Component
 Gets Model options from server & generates select statement
 
 **********/
-import {useContext, useState, useEffect} from 'react';
+import {use, useState, useEffect} from 'react';
 import {endpoint, datatype, proxyFetch} from '../util/Endpoints';
 import MySelect from './MySelect'
 import VehicleContext from '../VehicleContext';
 
 function Model(){
-  const {year, make, changeModel, setErr} = useContext(VehicleContext);
+  const {year, make, changeModel, setErr} = use(VehicleContext);
   const [models, setModels] = useState([]);
   
   function handleChange(e){
@@ -21,7 +21,6 @@ function Model(){
   useEffect(() => {
     if (year === "" || make === "") {
       // Clear list on reset
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setModels([]);
       return;
     }

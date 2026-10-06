@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import react, { reactCompilerPreset } from '@vitejs/plugin-react';
+import react from '@vitejs/plugin-react';
 import {createHtmlPlugin} from 'vite-plugin-html';
 
 export default defineConfig({

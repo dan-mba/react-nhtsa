@@ -4,20 +4,19 @@ Campaign Component
 Gets campaign data from server & displays it
 
 **********/
-import {useContext, useEffect, useState} from 'react';
+import {use, useEffect, useState} from 'react';
 import {Grid, Typography, Card, CardHeader, CardContent} from '@mui/material';
 import {recallEndpoint, proxyFetch} from '../util/Endpoints';
 import VehicleContext from '../VehicleContext';
 
 function Campaign() {
-  const {year, make, model, err, setErr} = useContext(VehicleContext);
+  const {year, make, model, err, setErr} = use(VehicleContext);
   const [campaigns, setCampaigns] = useState([]);
   const [failMod, setFailMod] = useState("");
   
   useEffect(() => {
     if (year === "" || make === "" || model === "") {
       // Clear list on reset
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCampaigns([]);
       setFailMod("");
       return;
@@ -51,7 +50,7 @@ function Campaign() {
       
       setCampaigns(newCampaigns);
     })
-    .catch(e => setErr(true));
+    .catch(() => setErr(true));
   }, [year,make,model,failMod,err,setErr]);
   
   function d(date) {

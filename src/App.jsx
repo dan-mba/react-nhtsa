@@ -46,7 +46,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <>
           <CssBaseline />
-          <VehicleContext.Provider value={context}>
+          <VehicleContext value={context}>
             <Typography
               align='center'
               color='secondary'
@@ -55,7 +55,7 @@ function App() {
             >NHTSA Recall Database</Typography>
             <SelectBox/>
             <Campaign/>
-          </VehicleContext.Provider>
+          </VehicleContext>
         </>
       </ThemeProvider>
     </StyledEngineProvider>

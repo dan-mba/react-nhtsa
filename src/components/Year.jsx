@@ -4,13 +4,13 @@ Year Component
 Gets year data from server & generates select statement
 
 **********/
-import {useContext, useEffect, useState} from 'react';
+import {use, useEffect, useState} from 'react';
 import {endpoint, datatype, proxyFetch} from '../util/Endpoints';
 import MySelect from './MySelect'
 import VehicleContext from '../VehicleContext';
 
 function Year() {
-  const {changeYear} = useContext(VehicleContext);
+  const {changeYear} = use(VehicleContext);
   const [years, setYears] = useState([]);
   
   

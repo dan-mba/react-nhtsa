@@ -196,7 +196,7 @@ importers:
         version: 10.0.1(eslint@10.12.0)
       '@vitejs/plugin-react':
         specifier: ^6.1.2
-        version: 6.1.2(oxc-transform-react@0.152.0)(vite@8.3.2(terser@5.51.2))
+        version: 6.1.2(oxc-transform-react@0.152.0)(vite@8.3.3(terser@5.51.2))
       eslint:
         specifier: ^10.12.0
         version: 10.12.0
@@ -207,11 +207,11 @@ importers:
         specifier: ^0.152.0
         version: 0.152.0
       vite:
-        specifier: ^8.3.2
-        version: 8.3.2(terser@5.51.2)
+        specifier: ^8.3.3
+        version: 8.3.3(terser@5.51.2)
       vite-plugin-html:
         specifier: ^3.2.2
-        version: 3.2.2(vite@8.3.2(terser@5.51.2))
+        version: 3.2.2(vite@8.3.3(terser@5.51.2))
 
 packages:
 
@@ -1663,8 +1663,8 @@ packages:
     peerDependencies:
       vite: '>=2.0.0'
 
-  vite@8.3.2:
-    resolution: {integrity: sha512-SQr1x6W5vVSbROg7vsyXIaxK9b0G7zsT68acdWWRmnBUsgDieLCRG+Rep9WdZgcposvv/GSnr4GUUBqB3vXq6w==}
+  vite@8.3.3:
+    resolution: {integrity: sha512-cTAldKPImjg6c+gk48U19POPn3GCBzZwpdsN8ZMEEcbpes+6/wvfqUd0C2y3qYY4wsj8PwgFwrZ/1jBPVttMSg==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
@@ -2328,10 +2328,10 @@ snapshots:
       '@typescript-eslint/types': 8.71.0
       eslint-visitor-keys: 5.0.1
 
-  '@vitejs/plugin-react@6.1.2(oxc-transform-react@0.152.0)(vite@8.3.2(terser@5.51.2))':
+  '@vitejs/plugin-react@6.1.2(oxc-transform-react@0.152.0)(vite@8.3.3(terser@5.51.2))':
     dependencies:
       '@rolldown/pluginutils': 1.0.1
-      vite: 8.3.2(terser@5.51.2)
+      vite: 8.3.3(terser@5.51.2)
     optionalDependencies:
       oxc-transform-react: 0.152.0
 
@@ -3133,7 +3133,7 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  vite-plugin-html@3.2.2(vite@8.3.2(terser@5.51.2)):
+  vite-plugin-html@3.2.2(vite@8.3.3(terser@5.51.2)):
     dependencies:
       '@rollup/pluginutils': 4.2.1
       colorette: 2.0.20
@@ -3147,9 +3147,9 @@ snapshots:
       html-minifier-terser: 6.1.0
       node-html-parser: 5.4.2
       pathe: 0.2.0
-      vite: 8.3.2(terser@5.51.2)
+      vite: 8.3.3(terser@5.51.2)
 
-  vite@8.3.2(terser@5.51.2):
+  vite@8.3.3(terser@5.51.2):
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.7
